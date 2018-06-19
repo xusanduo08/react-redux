@@ -35,7 +35,7 @@ export function getDependsOnOwnProps(mapToProps) {
 //  * On first call, verifies the first result is a plain object, in order to warn
 //    the developer that their mapToProps function is not returning a valid result.
 //    
-export function wrapMapToPropsFunc(mapToProps, methodName) {
+export function wrapMapToPropsFunc(mapToProps, methodName) {	//为什么要这样做-》包括起来添加一些新的功能
   return function initProxySelector(dispatch, { displayName }) {
     const proxy = function mapToPropsProxy(stateOrDispatch, ownProps) {
       return proxy.dependsOnOwnProps
@@ -47,7 +47,7 @@ export function wrapMapToPropsFunc(mapToProps, methodName) {
     proxy.dependsOnOwnProps = true
 
     proxy.mapToProps = function detectFactoryAndVerify(stateOrDispatch, ownProps) {
-      proxy.mapToProps = mapToProps
+      proxy.mapToProps = mapToProps	//这地方已经重新赋值了，所以不会出现死循环。
       proxy.dependsOnOwnProps = getDependsOnOwnProps(mapToProps)
       let props = proxy(stateOrDispatch, ownProps)
 

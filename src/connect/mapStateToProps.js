@@ -8,7 +8,7 @@ export function whenMapStateToPropsIsFunction(mapStateToProps) {
 
 export function whenMapStateToPropsIsMissing(mapStateToProps) {
   return (!mapStateToProps)
-    ? wrapMapToPropsConstant(() => ({}))
+    ? wrapMapToPropsConstant(() => ({}))//常量函数包围
     : undefined
 }
 

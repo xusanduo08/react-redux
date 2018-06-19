@@ -23,6 +23,7 @@ import defaultSelectorFactory from './selectorFactory'
  */
 
 function match(arg, factories, name) {
+    //从后往前执行factories数组中的函数，找到第一个返回结果不为假的函数，并将这个结果返回，并且这个结果仍然是一个函数
   for (let i = factories.length - 1; i >= 0; i--) {
     const result = factories[i](arg)
     if (result) return result

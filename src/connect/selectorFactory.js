@@ -72,14 +72,14 @@ export function pureFinalPropsSelectorFactory(
   }
 
   function handleSubsequentCalls(nextState, nextOwnProps) {
-    const propsChanged = !areOwnPropsEqual(nextOwnProps, ownProps)
-    const stateChanged = !areStatesEqual(nextState, state)
-    state = nextState
-    ownProps = nextOwnProps
+    const propsChanged = !areOwnPropsEqual(nextOwnProps, ownProps)  //判断props是否变化
+    const stateChanged = !areStatesEqual(nextState, state)      //判断state是否变化
+    state = nextState       //把下一个state赋值给state变量
+    ownProps = nextOwnProps     //把下一个props赋值给ownProps变量
 
-    if (propsChanged && stateChanged) return handleNewPropsAndNewState()
-    if (propsChanged) return handleNewProps()
-    if (stateChanged) return handleNewState()
+    if (propsChanged && stateChanged) return handleNewPropsAndNewState()    //如果props和state都变化
+    if (propsChanged) return handleNewProps()       //如果只变化props
+    if (stateChanged) return handleNewState()       //如果只变化state
     return mergedProps
   }
 
